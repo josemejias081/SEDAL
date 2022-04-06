@@ -1,0 +1,143 @@
+<h1 class="hide-pdf">Evaluación realizada satisfactoriamente</h1>
+<div class="container">
+  <div id="borde">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-6 col-md-2 hidden-xs hidden-sm">
+        <%= image_tag wicked_pdf_asset_base64("see-png.png"), class:"mx-auto d-block imagen", alt:"image", width:"120", height:"90", style:"border: none" %>
+      </div>
+        <div class="col-6 col-md-8" style="text-align:center; ">
+          <div>
+            <strong>REPÚBLICA BOLIVARIANA DE VENEZUELA<br>
+            MINISTERIO DEL PODER POPULAR PARA LA EDUCACIÓN<br>
+            SECRETARÍA EJECUTIVA DE EDUCACIÓN<br>
+            E. B. “NICANDRO ARVELO ANGÚLO”<br>
+            LAS COLINAS EDO BARINAS</strong>
+          </div>
+        </div>
+      <div class="col-6 col-md-2 hidden-xs hidden-sm">
+        <%= image_tag wicked_pdf_asset_base64("nic-arv.png"), class:"mx-auto d-block imagen", alt:"image", width:"120", height:"90", style:"border: none" %>
+      </div>
+    </div>
+  <h3 style="text-align: center;">Evaluación del desempeño</h3><br>
+  <div class="row">
+    <div class=<%= @is_pdf ? "col-md-12" : "col-md-8"%>>
+      <div class="table-responsive">
+      <table class="table table-bordered">
+          <thead class="bg-primary">
+            <tr>
+              <th scope="col">Título</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Evaluado</th>
+              <th scope="col">Evaluador</th>
+              <th scope="col" class="text-center">Puntaje total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @test.evaluation.title %></td>
+              <td><%= @test.evaluation.description %></td>
+              <td><%= @test.evaluated.name %>, <%= @test.evaluated.last_name %></td>
+              <td><%= @test.evaluator.name %>, <%= @test.evaluator.last_name %></td>
+              <td class="text-center"><%= @score_sums %></td>
+            </tr>
+          <thead class="bg-info">
+            <tr>
+              <th colspan="4">Item evaluado</th>
+              <th scope="col" class="text-center">Puntaje por item</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @test.scores.each do |score|%>
+            <tr>
+              <td colspan="4"><%= score.description %></td>
+              <td scope="col" class="text-center"><%= score.value %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+      <div class="hide-pdf">
+        <aside class="col -md-3 hidden-xs hidden-sm" >
+          <div class="pal">
+            <h4> Evaluación del desempeño:</h4>
+              <p class="text-primary">
+                La evaluación es un proceso personalizado,
+                así como continuo dentro del sistema de enseñanza y aprendizaje, 
+                el cual tiene como finalidad conocer  el desarrollo del estudiante
+                para garantizar que alcance los objetivos educativos definidos para su nivel inmediato,
+                preparándolo para afrontar el nivel inmediato superior. 
+                Siendo la evaluación una herramienta sumamente útil para la toma 
+                de decisiones pedagógicas que procuren mejorar el desempeño del evaluado, como del evaluador.
+              </p>
+            <h4>Importancia de la evaluación del desempeño:</h4>
+              <p class="text-primary">
+                La importancia de la evaluación radica en el seguimiento y 
+                valoración de los resultados obtenidos por el evaluado 
+                para determinar si los procedimientos y metodologías elegidas
+                están siendo adecuados. Por otra parte la evaluación se extiende 
+                a los distintos ámbitos y agentes de la actividad educativa,
+                incluyendo docentes, currículos educativos, administraciones educacionales,
+                así como también a los centros educativos.
+              </p>
+            <h4>En los estudiantes:</h4>
+              <p>
+                La evaluación puede servir como motivación para alcanzar
+                reconocimiento a su esfuerzo a través de las calificaciones
+                y les induce a revisar diversos materiales de estudio 
+                consolidando su aprendizaje.
+              </p>
+            <h4> En los docentes:</h4>
+              <p>
+                Les permite deducir el avance y/o desarrollo que poseen
+                los estudiantes bajo su responsabilidad en cuanto a los 
+                temas abordados, asi como también comprobar la eficacia 
+                de los métodos de enseñanza utilizados.
+              </p>
+            <h4> Artículo 54 de la LOPNA:</h4>
+              <p class="text-primary">
+                “Obligación del padre, de la madre, representantes o
+                responsables en materia de educación. El padre, la
+                madre, representantes o responsables, tienen la
+                obligación inmediata de garantizar la educación de los
+                niñas, niñas y adolescentes. En consecuencia deben
+                inscribirlos oportunamente en una escuela, plantel o
+                instituto de educación, de conformidad con la ley, así
+                como exigirles su asistencia regular a clases y participar
+                activamente en su proceso educativo” 
+              </p>
+          </div>
+        </aside>
+      </div>
+  </div><br>
+  <div class="container">
+    <div class="row align-items-end">
+      <div class="col">Director: ________________________</div><br>
+      <div class="col">Docente: ________________________</div><br>
+      <div class="col">Representante: ___________________</div>
+    </div>
+  </div>
+    <hr/>
+        <div>
+          <p>
+            E. B. “Nicandro Arvelo Angúlo”<br>
+            Departamento de evaluación<br>
+            Email: ebnicandro@gmail.com
+          </p>
+        </div>
+    <hr/>
+      <div class="text-center"><%= I18n.l(@test.created_at, format: "%A, %d de %B de %Y") %></div>
+         <span> Hora: <%= I18n.l(@test.created_at, format: "%H:%M%p") %></span>
+    </div>
+    <div class="hide-pdf">
+      <% if user_signed_in? && current_user.is_evaluator? or current_user.is_admin?%>
+      <h4><%= link_to 'Regresar a lista de usuarios', users_path %></h4>
+      <h4><%= link_to 'Ir a tests aplicados', tests_path %></h4>
+      <h4><%= link_to 'Salir', home_admi_path %></h4>
+      <% else %>
+      <h4><%= link_to "Ir a mi perfil", user_path(current_user.id) %></h4>
+      <h4><%= link_to 'Salir', home_admi_path %></h4>
+      <% end %>
+      <%= link_to 'Descargar pdf', test_path(@test, :format => :pdf), class:"btn btn-success" %>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<%= form_for @evaluation do |f| %>
+  <% @evaluation.errors.full_messages.each do |message| %>
+    <div>
+      ojo- <%=message%>
+    </div>
+  <% end %>
+    <div>
+      <%= f.label "Título de la evaluación" %>
+      <%= f.text_field :title, class: 'form-control', placeholder: 'Título' %>
+    </div>
+    <div>
+      <%= f.label "Descripción de la evaluación" %>
+      <%= f.text_area :description, class: 'form-control', placeholder: 'Descripción'%>
+    </div>
+      <%= f.fields_for :items do |item| %>
+        <%= render 'item_fields', f: item %>
+      <% end %>
+    <div class="links">
+      <p><%= link_to_add_association "Agregar items", f, :items %></p>
+      <%= f.submit "Guardar", class:"btn btn-success" %>
+    </div>
+<% end %>

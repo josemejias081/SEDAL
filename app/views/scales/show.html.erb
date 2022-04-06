@@ -1,0 +1,39 @@
+<div class="page">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+        <h1>Escala: <%= @scale.description  %></h1>
+      </div>
+        <dl>
+          <h4><dt id="esp">Nombre de la escala:</dt></h4>
+          <dd id="esp"><%= @scale.description %></dd>
+        </dl>
+      <h1>Variables </h1>
+    <table class="table table-sm">
+      <thead class="bg-info">
+        <tr>
+          <th scope="col">Descripción de la variable</th>
+          <th scope="col">Valor</th>
+          <th scope="col" class="text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% @scale.answers.each do |answer| %>
+        </tr>
+          <% unless answer.new_record? %>
+        <td style="vertical-align:middle;"><%= answer.description %></td>
+        <td style="vertical-align:middle;"><%= answer.value %></td>
+        <td>
+          <div class="text-center">
+            <%= link_to "Editar", edit_scale_answer_path(@scale, answer), class: "btn btn-warning navbar-btn btn-xs" %>
+            <%= link_to "Borrar", scale_answer_path(@scale, answer), class: "btn btn-danger navbar-btn btn-xs", method: :delete,
+                            data: { confirm: 'Estás seguro que deseas borrar esta variable?' } %>
+          </div>
+        </td>
+            <% end %>
+          <% end %>
+      </body>
+    </table>
+  </div>
+      <h4><%= link_to 'Regresar', scales_path %></h4>
+</div>

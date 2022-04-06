@@ -1,0 +1,26 @@
+<div class="nested-fields">
+  <div class="field">
+    <div class="row">
+      <div class="col-md-6">
+        <div>
+          <h2>Respuestas / variables</h2>
+          <%= f.label "Campo para crear respuesta" %>
+          <%= f.text_field :description, class: 'form-control', placeholder: 'Crear respuesta aqui...' %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div>
+        <h2>Valor de la variable</h2>
+          <%= f.label "Campo para asignar valor" %>
+          <%= f.text_field :value, class: 'form-control', placeholder: 'Asignar valor aqui...' %>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <%= link_to_remove_association "Eliminar respuesta", f, class: "btn btn-danger navbar-btn btn-xs" %>
+      </div>
+    </div>
+      <div>
+        <%= f.hidden_field :scale_id %>
+      </div>
+  </div>
+</div>

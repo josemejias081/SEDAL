@@ -1,0 +1,51 @@
+<div class="page">
+      <h4><%= link_to 'Regresar', groups_path %></h4>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <% if user_signed_in? %>
+          <h1>Sección / Departamento: <%= @group.section %></h1>
+      <% end %>
+    </div>
+    <div class="panel-body">
+      <p>
+        Aquí puedes encontrar la identificación de la sección conjuntamente con el nombre del responsable de ella, 
+        además tienes acciones para modificarla, agregar y ver sus usuarios, así como también enviarle evaluaciones, 
+        siempre y cuando tengas el nivel de permiso necesario para ello. 
+      </p>
+    </div>
+    <table class="table table-sm">
+        <thead class="bg-info">
+          <tr>
+            <th scope="col">Sección / Departamento</th>
+            <th scope="col">Responsable</th>
+            <th scope="col" class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @group.section %></td>
+            <td><%= @group.responsible.name%>, <%= @group.responsible.last_name%></td>
+            <td>
+              <div class="text-center">
+                <%= link_to "Editar", edit_group_path(@group), class: "btn btn-warning navbar-btn btn-xs" %>
+                <%= link_to "Borrar", group_path(@group), class: "btn btn-danger navbar-btn btn-xs", method: :delete,
+                              data: { confirm: 'Estás seguro que deseas borrar esta sección?' } %>
+              </div>
+            </td> 
+          </tr>
+        </body>
+    </table>
+  </div>
+</div>
+<div class="input-group">
+        <%= form_tag evaluation_notif_path(@group.id), method: :get do %>
+          <select id="evaluation" name="evaluation_id">
+            <% @evaluations.each do |eval| %>
+              <option value="<%= eval.id %>"><%= eval.title %></option>
+            <% end %>  
+          </select>
+            <%= submit_tag 'Enviar', class: "btn btn-success btn-xs"%>
+        <% end %>
+      </div>
+<%= link_to "Registrar usuarios", new_user_path, class:"btn btn-success btn-lg" %><br>
+<%= link_to "Lista de usuarios", users_path, class:"btn btn-primary btn-lg" %>

@@ -1,0 +1,31 @@
+<div class="jumbotron">
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead class="bg-info">
+        <tr>
+          <th scope="col">Título</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Evaluado</th>
+          <th scope="col">Evaluador</th>
+          <th scope="col">Puntaje total</th>
+          <th scope="col" class="text-center">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="vertical-align:middle;"><%= test.evaluation.title %></td>
+            <td style="vertical-align:middle;"><%= test.evaluation.description %></td>
+            <td style="vertical-align:middle;"><%= test.evaluated.name %>, <%= test.evaluated.last_name %></td>
+            <td style="vertical-align:middle;"><%= test.evaluator.name %>, <%= test.evaluator.last_name %></td>
+            <td style="vertical-align:middle;"><%= test.scores.sum(:value) %></td>
+            <td>
+              <div class="text-center">
+                <%= link_to "Ver evaluación", test, class: "btn btn-success navbar-btn btn-xs text-center" %>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+</div>
+<hr>

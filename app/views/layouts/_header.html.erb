@@ -1,0 +1,52 @@
+<div class="navbar navbar-fixed-top navbar-defaul be-blue black large-padding hide-pdf" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle be-green" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="caret"></span>       
+      </button>
+      <%= link_to "SEDAL", root_path, id: "logo", class: "navbar-brand" %>      
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <% if user_signed_in? %>
+            <li class="active">
+              <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete %>
+            </li>
+            <li>
+              <%= link_to "Administración", home_admi_path %>
+            </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+            <li>
+              <%= link_to "Secciones", groups_path %>
+            </li>
+            <li>
+              <%= link_to "Escalas", scales_path %>
+            </li>
+            <li>
+              <%= link_to "Evaluaciones", evaluations_path %>
+            </li>
+            <li>
+              <%= link_to "Usuarios", users_path %>
+            </li>
+            <li>
+              <%= link_to "Mi perfil", user_path(current_user.id) %>
+            </li>
+            <li>
+              <%= link_to "Tests", tests_path %>
+            </li>
+            <li>
+              <%= link_to "Galeria", picture_photo_path %>
+            </li>
+            </ul>
+        <%else%>
+          <li>
+            <%= link_to "Iniciar sesión", new_user_session_path %>
+          </li>
+        <%end%>
+    </div>
+  </div>
+</div>

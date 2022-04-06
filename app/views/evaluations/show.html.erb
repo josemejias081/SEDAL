@@ -1,0 +1,52 @@
+<div class="page">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <% if user_signed_in? %>
+        <h1><%= @evaluation.title %></h1>
+      <% end %>
+    </div>
+      <dl>
+        <h4 id="esp"><dt>Título:</dt></h4>
+        <dd id="Asp"><%= @evaluation.title %></dd>
+        <h4 id="esp"><dt>Descripción:</dt></h4>
+        <dd id="Asp"><%= @evaluation.description %></dd>
+      </dl>
+      <% unless @evaluation.user.nil? %>
+        <strong><p id="esp">Creado por: </p></strong>
+        <dd id="Asp"><%= @evaluation.user.name %> <%= @evaluation.user.last_name %> <strong style="color: blue"><%= @evaluation.user.email %></strong></dd>
+      <% end %>
+      <h4 id="esp"><dt>Fecha:</dt></h4>
+      <dd id="Asp"><%= I18n.l(@evaluation.created_at, format: "%A, %d de %B de %Y") %></dd>
+         
+    <h1>Items a ser evaluados </h1>
+    <table class="table table-sm">
+        <thead class="bg-info">
+          <tr>
+            <th scope="col">Descripción</th>
+            <th scope="col">Escalamiento</th>
+            <th scope="col" class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <% @evaluation.items.each do |item| %>
+          </tr>
+            <% unless item.new_record? %>
+            <td style="vertical-align:middle;"><%= item.description %></td>
+            <td style="vertical-align:middle;"><%= item.scale.try(:description) %></td>
+            <td>
+              <div class="text-center">
+                <%= link_to "Editar", edit_evaluation_item_path(@evaluation, item), class: "btn btn-warning navbar-btn btn-xs" %>
+                <%= link_to "Borrar", evaluation_item_path(@evaluation, item), class: "btn btn-danger navbar-btn btn-xs", method: :delete,
+                                data: { confirm: 'Estás seguro que deseas borrar este item?' } %>
+              </div>
+            </td>
+          </tr>  
+              <% end %>
+            <% end %>
+        </body>
+    </table>
+  </div>
+    <h4><%= link_to 'Regresar', evaluations_path %></h4>
+</div>
+

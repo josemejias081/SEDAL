@@ -1,0 +1,24 @@
+<%= form_for @group do |f| %>
+  <% @group.errors.full_messages.each do |message| %>
+    <div>
+      <%=message%>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.label "Sección / Departamento" %>
+      <%= f.text_field :section, class: 'form-control', placeholder: 'Ejemplo: 1 - "A"' %>
+    </div>
+    <div class="col-md-6">
+      <label>Asignar responsable</label><br>
+        <%= f.collection_select(:responsible_id, @users, :id, :name) %>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-md-12">  
+        <div>
+          <%= f.submit "Guardar", class:"btn btn-success" %>
+        </div>
+      </div>
+    </div>
+<% end %>

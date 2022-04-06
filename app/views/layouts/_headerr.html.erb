@@ -1,0 +1,49 @@
+<nav class="navbar navbar-fixed-top navbar-defaul be-blue black large-padding hide-pdf" role="navigation">
+  <div class="container">
+    <%= link_to 'SEDAL', root_path, class: "navbar-brand ml-2" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse mr-5" id="navbar">
+      <ul class="nav navbar-nav ml-auto mr-5">
+        <% if user_signed_in? %>
+        
+          <li class="nav-item">
+            <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Administración", home_admi_path, class: "nav-link" %>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-item">
+            <%= link_to "Secciones", groups_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Escalas", scales_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Evaluaciones", evaluations_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Usuarios", users_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Mi perfil", user_path(current_user.id), class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Tests", tests_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Galeria", picture_photo_path, class: "nav-link" %>
+          </li>
+        </ul>
+          <%else%>
+            <li class="nav-item">
+              <%= link_to "Iniciar sesión", new_user_session_path %>
+            </li>
+          <%end%>
+      </ul> 
+    </div>
+  </div>
+</nav><br>

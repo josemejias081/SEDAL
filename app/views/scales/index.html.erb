@@ -1,0 +1,46 @@
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+      <div class="col-md-10">
+          <h4><%= link_to "Crear nueva escala", new_scale_path %></h4>
+          <div class="panel panel-default">
+            <div class="panel-heading"><h1>Banco de escalas</h1></div>
+            <div class="panel-body">
+              <p>
+                Aquí puedes encontrar una variedad de escalas las cuales puedes utilizar para, 
+                las evaluaciones a aplicar, además tienes acciones para modificarlas, 
+                siempre y cuando tengas el nivel de permiso necesario para ello.
+              </p>
+            </div>
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered table-condensed">
+              <thead class="bg-info">
+                <tr>
+                  <th scope="col">Nombre de la escala</th>
+                  <th scope="col" class="text-center">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @scales.each do |scale| %>
+                  <tr>
+                    <td style="vertical-align:middle;"><%= scale.description %></td>
+                    <td>
+                      <div class="text-center">
+                        <%= link_to "Mostrar", scale_path(scale), class: "btn btn-success navbar-btn btn-xs" %>
+                        <%= link_to "Editar", edit_scale_path(scale), class: "btn btn-warning navbar-btn btn-xs" %>
+                        <%= link_to "Borrar", scale_path(scale), class: "btn btn-danger navbar-btn btn-xs", method: :delete,
+                                          data: { confirm: 'Estás seguro que deseas borrar esta evaluación?' } %>
+                      </div>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        

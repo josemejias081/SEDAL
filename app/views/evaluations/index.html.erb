@@ -1,0 +1,42 @@
+<div class="jumbotron">
+  <div class="container">
+  <h4><%= link_to "Crear nueva evaluación", new_evaluation_path %></h4>
+    <div class="panel panel-default">
+      <div class="panel-heading"><h1>Lista de evaluaciones</h1></div>
+        <div class="panel-body">
+          <p>
+            Aquí puedes encontrar el título y descripción de las distintas evaluaciones 
+            desarrolladas para ser aplicadas, por otra parte,tienes las acciones para modificar
+            estas evaluaciones, siempre y cuando tengas el nivel de permiso necesario para ello.
+          </p>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead class="bg-info">
+              <tr>
+                <th scope="col">Título</th>
+                <th scope="col">Descripción</th>
+                <th scope="col" class="text-center">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @evaluations.each do |evaluation| %>
+              <tr>
+                <td style="vertical-align:middle;"><%= evaluation.title %></td>
+                <td style="vertical-align:middle;"><%= evaluation.description %></td>
+                <td>
+                  <div class="text-center">
+                    <%= link_to "Mostrar", evaluation_path(evaluation), class: "btn btn-success navbar-btn btn-xs" %>
+                    <%= link_to "Editar", edit_evaluation_path(evaluation), class: "btn btn-warning navbar-btn btn-xs" %>
+                    <%= link_to "Borrar", evaluation_path(evaluation), class: "btn btn-danger navbar-btn btn-xs", method: :delete,
+                                      data: { confirm: 'Estás seguro que deseas borrar esta evaluación?' } %>
+                  </div>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="container">
+  <div id="borde">
+    <h1>Lista de usuarios</h1>
+    <hr/>
+    <div class= "container">
+      <div class="col-md-4">
+        <%= form_tag users_path, role: 'search', method: :get do %>
+          <%= text_field_tag :user_name, @users_name, class: 'form-control', placeholder: 'Buscar usuario' %>
+          <%= submit_tag 'Buscar', class: 'btn btn-success btn-sm glyphicon glyphicon-search' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+    <h4><%= link_to "Regresar", home_admi_path %></h4>
+      <fieldset>
+        <legend>Perfiles</legend><br>
+                <% @users.each do |user| %>
+                <ul>
+                <div class="row">
+                  <div class="col-md-3">
+                    <div id="marco">
+                      <% if user.picture.attached? %>
+                        <img src="<%=(url_for(user.picture))%>", width="200" height="300" style="border:10px solid gray;">
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                      <li>Nombre: <%= user.name %></li>
+                      <li>Apellido: <%= user.last_name %></li>
+                      <li>Cédula: <%= user.num_identification %></li>
+                      <li>Lugar de nacimiento: <%= user.place_of_birth %></li>
+                      <li>Dirección: <%= user.address %></li>
+                      <li>Número telefónico: <%= user.phone_number %></li>
+                      <li>Función: <%= user.appointment %></li>
+                      <li>Estatus actual: <%= user.status %></li>
+                      <li>Presenta alguna discapacidad: <%= user.disability %></li>
+                      <li>Nivel de acceso: <%= user.permission_level %></li>
+                      <li>Sección a que pertenece: <%= user.group.section %></li>
+                      <li>Correo electrónico: <%= user.email %></li>
+                      <%= link_to "Mostrar", user_path(user), class: "btn btn-success" %>
+                      <%= link_to "Editar", edit_user_path(user), class: "btn btn-warning" %>
+                      <%= link_to "Borrar", user_path(user), class: "btn btn-danger", method: :delete,
+                                        data: { confirm: 'Estás seguro que deseas borrar este usuario?' } %>
+                    <hr/>
+                  </div>
+                </div>
+              </ul>
+                <% end %>
+      </fieldset> 
+  </div>
+<div>
+<h4><%= link_to "Regresar", home_admi_path %></h4>
+
+<%== pagy_bootstrap_nav(@pagy) %>

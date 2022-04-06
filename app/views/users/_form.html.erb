@@ -1,0 +1,106 @@
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= t('activerecord.errors.custom.users', count: @user.errors.count) %>
+      </h2>
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% if user_signed_in? && current_user.is_admin? %>
+  <div class="row">
+    <div class="col-md-6">
+      <label>Nivel de acceso:</label><br>
+        <%= f.text_field :permission_level, class: 'form-control', placeholder: 'Ej: 1' %> 
+    </div>
+    <% else %>
+      <div class="row">
+        <div class="col-md-6"> 
+      </div>
+    <% end %>
+    <div class="col-md-4">
+       <label>Foto:</label><br>
+      <%= f.file_field :picture %>
+    </div>
+    <div class="col-md-2">
+     <label>Asignar sección / departamento:</label><br>
+        <%= f.collection_select(:group_id, @groups, :id, :section) %>
+    </div>
+  </div>
+<br>
+  <div class="row">
+    <div class="col-md-6">
+      <label>Nombre(s):</label><br>
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Ej: Pedro, José' %>
+    </div>
+    <div class="col-md-6">
+      <label>Apellido(s):</label><br>
+      <%= f.text_field :last_name, class: 'form-control', placeholder: 'Ej: Díaz, Díaz' %>
+    </div>
+  </div>
+<br>
+  <div class="row">
+    <div class="col-md-6">
+      <label>Cédula:</label><br>
+      <%= f.text_field :num_identification, class: 'form-control', placeholder: 'Ej: "00000000" sin comas ni puntos' %>
+    </div>
+    <div class="col-md-6">
+      <label>Lugar de nacimiento:</label><br>
+      <%= f.text_field :place_of_birth, class: 'form-control', placeholder: 'Ej: Barrancas-Barinas' %>
+    </div>
+  </div>
+<br>
+  <div class="row">
+    <div class="col-md-6">
+      <label>Dirección:</label><br>
+      <%= f.text_field :address, class: 'form-control', placeholder: 'Ej: Urb/Bo Ciudad Bendita, calle el milagro #33' %>
+    </div>
+    <div class="col-md-6">
+      <label>Número telefónico:</label><br>
+      <%= f.text_field :phone_number, class: 'form-control', placeholder: 'Ej: 0000/0000000' %>
+    </div>
+  </div>
+<br>
+  <div class="row">
+    <div class="col-md-6">
+      <label>Función:</label><br>
+      <%= f.text_field :appointment, class: 'form-control', placeholder: 'Ej: Director, Docente, Estudiante...' %>
+    </div>
+    <div class="col-md-6">
+      <label>Estatus actual:</label><br>
+      <%= f.text_field :status, class: 'form-control', placeholder: 'Ej: Activo/Reposo/Vacaciones/Comisión' %>
+    </div>
+  </div>
+<br>
+  <div class="row">
+    <div class="col-md-6">
+      <label>Presenta alguna discapacidad?:</label><br>
+      <%= f.text_field :disability, class: 'form-control', placeholder: 'Ej: Ninguna/Si: Visual-Motora-Fonética...' %>
+    </div>
+    <div class="col-md-6">
+      <label>Correo:</label><br>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'Escriba el correo correctamente' %>
+    </div>
+  </div>
+<br>
+  <div class="row">
+    <div class="col-md-6">
+       <label>Contraseña:</label>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control', placeholder: 'No debe tener menos de 6 caracteres' %>
+    </div>
+    <div class="col-md-6">
+       <label>Confirmar contraseña:</label><br>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', placeholder: 'Repita la contraseña ingresada' %>
+    </div>
+  </div>
+  <div>
+    <%= f.submit "Guardar", class:"btn btn-success" %> 
+  </div>
+<% end %>

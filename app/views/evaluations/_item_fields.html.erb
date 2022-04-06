@@ -1,0 +1,10 @@
+<div class="nested-fields">
+  <div class="field">
+    <div>
+      <%= f.label "Campo para crear item" %>
+      <%= f.text_area :description, class: 'form-control', placeholder: 'Crear item aqui...' %>
+      <%= f.collection_select(:scale_id, @scales, :id, :description) %>
+    </div>
+    <p><%= link_to_remove_association "Eliminar item", f %></p>
+  </div>
+</div>

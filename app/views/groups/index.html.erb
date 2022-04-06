@@ -1,0 +1,43 @@
+<div class="jumbotron">
+    <div class="container">
+      <h4><%= link_to "Crear nueva sección", new_group_path %></h4>
+      <div class="panel panel-default">
+      <div class="panel-heading"><h1>Secciones / Departamentos</h1></div>
+        <div class="panel-body">
+          <p>
+            Aquí puedes encontrar la distintas secciones de la institución, 
+            conjuntamente con el responsable de la misma, por otra parte,
+            tienes las acciones para modificar estas secciones, 
+            siempre y cuando tengas el nivel de permiso necesario para ello.
+          </p>
+        </div>
+      <div class="table-responsive">
+        <table class="table table-striped  table-condensed">
+          <thead class="bg-info">
+            <tr>
+              <th scope="col">Sección / Departamento</th>
+              <th scope="col">Responsable</th>
+              <th scope="col" class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @groups.each do |group| %>
+            <tr>
+              <td style="vertical-align:middle;"><%= group.section %></td>
+              <td style="vertical-align:middle;"><%= group.responsible.name %>, <%= group.responsible.last_name %></td>
+              <td>
+                <div class="text-center">
+                  <%= link_to "Mostrar", group_path(group), class: "btn btn-success navbar-btn btn-xs" %>
+                  <%= link_to "Editar", edit_group_path(group), class: "btn btn-warning navbar-btn btn-xs" %>
+                  <%= link_to "Borrar", group_path(group), class: "btn btn-danger navbar-btn btn-xs", method: :delete,
+                                    data: { confirm: 'Estás seguro que deseas borrar esta evaluación?' } %>
+                </div>
+              </td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<h1>Tests aplicados</h1>
+  <% @tests.each do |test|%>
+    <%= render test %>
+  <% end %>
+<h4><%= link_to "Salir", home_admi_path %></h4>
+                       
+<%== pagy_bootstrap_nav(@pagy) %>

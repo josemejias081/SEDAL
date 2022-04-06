@@ -1,0 +1,38 @@
+<fieldset>
+  <legend><h2>Cuestionario de Evaluación</h2></legend>
+  <hr/>
+  <hr/>
+    <h3 id="Asp">Aspectos a evaluar</h3>
+  <hr/>
+  <hr/>
+  <div class="form">
+    <%= form_for @test, url: tests_path do |f| %>
+      <%= f.hidden_field :evaluated_id %>
+      <%= f.hidden_field :evaluator_id %>
+      <%= f.hidden_field :evaluation_id %>
+      
+        <%= f.fields_for :scores do |ave| %>
+          <li class="list-unstyled" id="unico"><%= ave.object.description %></li>
+          <ul>
+            <% ave.object.item.scale.answers.each do |answer| %>
+              <li class="list-unstyled">
+                <%= ave.radio_button :value, answer.value %>
+                <%= ave.label :value, answer.description %>
+              </li>
+            <% end %>
+          </ul>
+            <%= ave.hidden_field :item_id %>
+            <%= ave.hidden_field :test_id %>
+            <%= ave.hidden_field :description %>
+          <hr/>
+        <% end %>
+        <div class="boton">  <%= f.submit "Guardar", class:"btn btn-success navbar-btn btn-lg", data: { confirm: 'Ningun item puede quedar sin evaluar, luego no podras modificar esta evaluación?' } %></div>
+    <% end %>  
+  </div>
+  <hr/> 
+  <div class="text-center">
+    <button class="btn btn-primary navbar-btn btn-lg" disabled type="button">
+      Items presentes: <span class="badge"><%= @test.scores.length %></span>
+    </button>
+  </div>
+</fieldset>

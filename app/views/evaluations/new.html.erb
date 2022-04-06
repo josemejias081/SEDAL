@@ -1,0 +1,46 @@
+<div class=container>
+<body>
+  <section class="container2">
+    <h1>Bienvenido: <%= current_user.name %></h1>
+    <h1>Es un placer servirte de herramienta para hacer tu labor más efectiva.</h1>
+      <h2>Desarrolla los items tomando en cuenta los indicadores. </h2>
+        <%= render 'form', evaluation: @evaluation %>
+        <h4><%= link_to 'Regresar', evaluations_path %></h4>
+  </section>
+</body>
+<aside class="col -md-3 hidden-xs hidden-sm">
+  <div class="pal">
+    <h3> Toma en cuenta lo siguiente:</h3>
+      <p class="text-primary">
+        Los indicadores son datos que pretenden reflejar el estado de una situación,
+        o de algún aspecto particular, en un momento y un espacio determinado. 
+        Procuran sintetizar la información proporcionada por los
+        diversos estándares, dimensiones o variables que afectan la situación
+        analizada. 
+      </p>
+
+      <p class="text-primary">
+        Los indicadores son herramientas para clarificar y definir de forma precisa,
+        objetivos e impactos; son medidas verificables de cambio o de resultado, 
+        que permiten estimar o demostrar el progreso con respecto a metas establecidas.    
+        Un indicador se mide dentro de un periodo de tiempo determinado, para poder comparar
+        los distintos periodos, lo que permite ver la evolución en el tiempo y estudiar
+        tendencias acerca de la situación medida, adquiriendo un gran valor como
+        herramienta en los procesos de evaluación y toma de decisiones. 
+      </p>
+    <h3> Algunos ejemplos:</h3>
+      <ul>
+        <h4 class="text-primary">En lo socio-personal</h4>
+          <li>¿Muestra una conducta ajustada al ámbito donde se desenvuelve?</li>
+          <li>¿Presenta puntualidad en en horario?</li>
+          <li>¿Demuestra organización y pulcritud con sus materiales de trabajo?</li>
+          <li>¿Fomenta el orden y la limpieza?</li>
+        <h4 class="text-primary">En lo laboral</h4>
+          <li>¿Mantiene actitud cordial con sus compañeros de trabajo?</li>
+          <li>¿Realiza planificación para el desarrollo de sus actividades?</li>
+          <li>¿Incorpora actividades que promueven la productividad organizacional?</li>
+          <li>¿Articula con sus colaboradores las actividades a desarrollar, manteniendo una comunicación asertiva?</li>
+      </ul>
+    </div>
+  </aside>
+</div>

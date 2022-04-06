@@ -1,0 +1,22 @@
+<div class="galeria">
+  <h1>Galeria</h1>
+  <div class="linea"></div>
+  <div class="contenedor-imagenes">
+    <% @users.each do |user| %>
+        <% if user.picture.attached? %>
+      <div class="imagen">
+        <img src="<%=(url_for(user.picture))%>" alt="">
+        <div class="overlay">
+          <h5>
+            <%= user.name%> <%= user.last_name%><br>
+            <%= I18n.l(user.created_at, format: "%d/%m/%Y") %>
+          </h5>
+        </div>
+      </div>
+        <% end %>
+    <% end %>
+   
+  </div>
+   
+</div>
+<%== pagy_bootstrap_nav(@pagy) %>

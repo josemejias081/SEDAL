@@ -1,0 +1,99 @@
+<h1>Perfil de usuario</h1>
+<div class="container">
+  <div id="borde">
+    <div class="row">
+      <div class="col-md-3">
+        <div id="marco">
+          <% if @user.picture.attached? %>
+            <img src="<%=(url_for(@user.picture))%>", width="200" height="330" style="border:10px solid gray;">
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <fieldset>
+          <legend>Datos personales</legend>
+            <ul>
+              <li>Nombre: <%= @user.name %></li>
+              <li>Apellido: <%= @user.last_name %></li>
+              <li>Cédula: <%= @user.num_identification %></li>
+              <li>Lugar de nacimiento: <%= @user.place_of_birth %></li>
+              <li>Dirección: <%= @user.address %></li>
+              <li>Número telefónico: <%= @user.phone_number %></li>
+              <li>Función: <%= @user.appointment %></li>
+              <li>Estatus actual: <%= @user.status %></li>
+              <li>Discapacidad: <%= @user.disability %></li>
+              <li>Nivel de acceso: <%= @user.permission_level %></li>
+              <li>Sección a que pertenece: <%= @user.group.section %></li>
+              <li>Correo electrónico: <%= @user.email %></li>
+            </ul>    
+        </fieldset>
+    </div>
+  </div>
+</div>      
+  <% if user_signed_in? && current_user.is_evaluator? %>
+    <h4><%= link_to "Regresar", users_path %><br></h4>
+    <h4><%= link_to "Salir", home_path %></h4>
+  
+    <div class="input-group">
+        <%= form_tag new_test_path, role: 'search', method: :get do %>
+          <select id="evaluation" name="evaluation_id">
+            <% @evaluations.each do |eval| %>
+              <option value="<%= eval.id %>"><%= eval.title %></option>
+            <% end %>  
+          </select>
+            <%= hidden_field_tag :user_id, @user.id %> 
+            <%= submit_tag 'Evaluar', class: "btn btn-success btn-xs"%>
+        <% end %>
+      </div>
+<hr/>
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a class="btn btn-success" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          Test que he evaluado <span class="caret"></span>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body well">
+        <% @user.evaluator_tests.each do |test|%>
+          <%= render test %>
+        <% end %>
+      </div>
+    </div>
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="btn btn-info" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Test que me han evaluado <span class="caret"></span>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body well">
+        <% @user.evaluated_tests.each do |test|%>
+          <%= render test %>
+        <% end %>
+      </div>
+    </div>
+  <h4><%= link_to "Regresar", users_path %><br></h4>
+  <h4><%= link_to "Salir", home_admi_path %></h4>
+<% else %>
+  <h4><%= link_to "Salir", home_admi_path %></h4>
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="btn btn-info" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Test que me han evaluado <span class="caret"></span>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body well">
+        <% @user.evaluated_tests.each do |test|%>
+          <%= render test %>
+        <% end %>
+      </div>
+    </div>
+    <h4><%= link_to "Salir", home_admi_path %></h4>   
+  <% end %> 
+</div>
+

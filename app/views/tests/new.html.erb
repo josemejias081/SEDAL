@@ -1,0 +1,15 @@
+<body>
+  <div id="borde">
+  <% if user_signed_in? && current_user.is_evaluator? %>
+     <h1>¡Hola! <%= current_user.name %></h1>
+      <h2>Te recuerdo que debes evaluar objetivamente</h2>
+  <% else %>
+      <h1>¡Hola! <%= current_user.name %></h1>
+      <h2>Sabemos que te has preparado, suerte en tu evaluación...</h2>
+  <% end %>
+    <hr/>
+  </div>
+    <h4><%= link_to 'Regresar', users_path %></h4>
+    <%= render 'form' %>
+    <h4><%= link_to 'Regresar', users_path %></h4>
+</body>

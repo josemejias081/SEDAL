@@ -1,0 +1,20 @@
+<%= form_for @scale do |f| %>
+  <% @scale.errors.full_messages.each do |message| %>
+    <div>
+      <%=message%>
+    </div>
+  <% end %>
+   
+    <div>
+      <%= f.label "Nombre de la escala" %>
+      <%= f.text_field :description, class: 'form-control', placeholder: 'Nombre...' %>
+    </div>
+     
+      <%= f.fields_for :answers do |answer| %>
+          <%= render 'answer_fields', f: answer %>
+        <% end %>
+      <div class="links">
+        <p><%= link_to_add_association "Agregar respuesta", f, :answers, class: "btn btn-info navbar-btn btn-xs" %></p>
+        <%= f.submit "Guardar", class: "btn btn-success" %>
+      </div>
+<% end %>

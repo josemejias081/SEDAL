@@ -1,0 +1,63 @@
+<div class="container border-container">
+  <% if user_signed_in? && current_user.is_evaluator? %>
+  <h1>Bienvenido(a): <%= current_user.name %></h1><br>
+  <div class="divider"></div>
+    <h1>Acciones generales</h1>
+  <div class="divider"></div>
+  <div class="row">
+    <div class="col-md-6 col-admin">
+      <%= link_to "Crear nueva sección / departamento", new_group_path, class: "btn btn-success"%>
+    </div>
+    <div class="col-md-6 col-admin">
+      <%= link_to "Ir a lista de secciones / departamentos", groups_path, class: "btn btn-primary" %>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-md-6 col-admin">
+      <%= link_to "Crear nueva escala", new_scale_path, class: "btn btn-success" %>
+    </div>
+    <div class="col-md-6 col-admin">
+      <%= link_to "Ir a lista de escalas", scales_path, class: "btn btn-primary" %>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-md-6 col-admin">
+      <%= link_to "Crear nueva evaluación", new_evaluation_path, class: "btn btn-success" %>
+    </div>
+    <div class="col-md-6 col-admin">
+      <%= link_to "Ir a lista de evaluaciones", evaluations_path, class: "btn btn-primary" %>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-md-12 col-search">
+      <%= form_tag evaluations_path, role: 'search', method: :get do %>
+        <%= text_field_tag :evaluation_title, @evaluations_title, class: 'form-control', placeholder: 'Buscar evaluación' %>
+        <%= submit_tag 'Buscar', class:"btn btn-success" %>
+      <% end %>
+    </div>
+  </div><br>
+  <div class="divider"></div>
+    <h1>Usuario</h1>
+  <div class="divider"></div>
+  <div class="row">
+    <div class="col-md-6 col-admin">
+      <%= link_to "Registrar usuario", new_user_path, class: "btn btn-success" %>
+    </div>
+    <div class="col-md-6 col-admin">
+      <%= link_to "Ir a lista de usuarios", users_path, class: "btn btn-primary" %>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-md-12 col-search">
+      <%= form_tag users_path, role: 'search', method: :get do %>
+        <%= text_field_tag :user_name, @users_name, class: 'form-control', placeholder: 'Buscar usuario' %>
+        <%= submit_tag 'Buscar', class:"btn btn-success" %>
+      <% end %>
+    </div>
+  <% else %>
+    <h1>Bienvenido(a): <%= current_user.name %></h1>
+    <br>
+    <h4><%= link_to "Aquí puedes ver tu perfil...", user_path(current_user.id), class:"btn btn-success", style: "text-aling: center;" %></h4>
+  <% end %>
+  </div><br>
+</div>
