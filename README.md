@@ -6,8 +6,7 @@ Debes tener instalado
 
 Ruby on Rails " ~> 6.0.3"
 Ruby "2.7.2"
-
-# Instalación:
+Instalación:
 Puedes instalarlo clonando el repositorio desde[ aquí](https://github.com/josemejias081/SEDAL " aquí")
 
 Construido con:
@@ -37,7 +36,11 @@ Construido con:
 ## Autor:
 [José Mejias](http://https://josemejias081.github.io/portafolio/biografy.html "José Mejias")
 
-Agradecimiento:
+## ¿Cómo funciona?
+
+Ver [demo](https://www.youtube.com/watch?v=RAE-WP9dkEc "demo")
+
+## Agradecimiento:
 - Xplosion
 - [ Codigofacilito](https://www.youtube.com/c/codigofacilito " Codigofacilito")
 -  [GoRails](https://www.youtube.com/c/GorailsTV "GoRails")
@@ -45,8 +48,8 @@ Agradecimiento:
 - [Makeitrealcamp](https://makeitrealcamp.gitbook.io/ruby-on-rails-5/ "Makeitrealcamp")
 - [Fazt](https://www.youtube.com/c/FaztTech "Fazt")
 
-Estado del proyecto:
+## Estado del proyecto:
 Actualmente sin actualizaciones, con avance lento por falta de tiempo y recursos.
 
-Licencia:
-Con licencia MIT .
+## Licencia:
+Con licencia MIT.
