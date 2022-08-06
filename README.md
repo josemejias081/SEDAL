@@ -6,7 +6,8 @@ Debes tener instalado
 
 Ruby on Rails " ~> 6.0.3"
 Ruby "2.7.2"
-Instalación:
+
+# Instalación:
 Puedes instalarlo clonando el repositorio desde[ aquí](https://github.com/josemejias081/SEDAL " aquí")
 
 Construido con:
